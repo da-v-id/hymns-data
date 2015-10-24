@@ -1,10 +1,7 @@
 var http = require('http');
 var fs = require('fs');
-var pdfText = require('pdf-text');
 var cheerio = require("cheerio");
 var request = require("request");
-var MongoClient = require('mongodb').MongoClient;
-var format = require('util').format;
 var path = require('path');
 
 
