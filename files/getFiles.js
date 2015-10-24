@@ -26,5 +26,5 @@ function processPdf(uri){
     var r = response.pipe(file);
     
   });
-  fs.stream.end();
+  stream.end();
 }
