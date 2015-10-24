@@ -19,7 +19,6 @@ request({
       processPdf(href);
     }
   });
-  buildDB();
 });
 
 function processPdf(uri){
@@ -31,4 +30,4 @@ function processPdf(uri){
     
   });
   fs.stream.end();
-});
+}
