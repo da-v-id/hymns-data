@@ -24,7 +24,7 @@ request({
 
 function processPdf(uri){
 
-  var file = fs.createWriteStream(path.basename(uri));
+  var file = fs.createWriteStream('files/'+path.basename(uri));
   var hymnObj = {};
   var request = http.get(uri, function(response) {
     var r = response.pipe(file);
