@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/da-v-id/hymns-data#readme",
   "devDependencies": {
+    "asyncawait": "^1.0.1",
     "cheerio": "^0.19.0",
     "fs": "0.0.2",
     "http": "0.0.0",
