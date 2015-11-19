@@ -15,7 +15,7 @@ var run = async (function (){
       var link = $(this);
       var href = link.attr('href');
       if(href.indexOf('.pdf')!==(-1)){
-        var result = await processPdf(href);
+        var result = await (processPdf(href));
       }
     });
   });
@@ -25,15 +25,8 @@ var processPdf = async (function (uri){
 
   var file = fs.createWriteStream('pdfs/'+path.basename(uri));
   var hymnObj = {};
-  var request = await http.get(uri, function(response) {
+  var request = await (http.get(uri, function(response) {
     var r = response.pipe(file);
     
-  });
-});
-
-var go = async (function() {
-    var resultA = await (firstAsyncCall());
-    var resultB = await (secondAsyncCallUsing(resultA));
-    var resultC = await (thirdAsyncCallUsing(resultB));
-    return doSomethingWith(resultC);
+  }));
 });
