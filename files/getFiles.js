@@ -15,7 +15,7 @@ var run = function (){
       var link = $(this);
       var href = link.attr('href');
       if(href.indexOf('.pdf')!==(-1)){
-        linkArray[] = href;
+        linkArray.push(href);
         var result = processPdf(href);
       }
     });
