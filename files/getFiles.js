@@ -6,7 +6,7 @@ var path = require('path');
 var async = require('asyncawait/async');
 var await = require('asyncawait/await');
 
-var run = async function (){
+var run = async (function (){
   request({
     uri: "http://hymns.countedfaithful.org/numberListing.php",
   }, function(error, response, body) {
@@ -19,7 +19,7 @@ var run = async function (){
       }
     });
   });
-}
+});
 
 var processPdf = async (function (uri){
 
