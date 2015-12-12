@@ -16,13 +16,13 @@ fs.readdir(dir,function(err,files){
             data[file]=html;
             if (0===--c) {
                 console.log('done read');
-                buildDB();
+                buildDB(data);
             }
         });
     });
 });
 
-function buildDB(){
+function buildDB(data){
     MongoClient.connect('mongodb://127.0.0.1:27017/hymns', function(err, db) {
         if(err) throw err;
 console.log('going');
