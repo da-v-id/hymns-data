@@ -18,7 +18,6 @@ fs.readdir(dir,function(err,files){
         c++;
         fs.readFile(dir+file,function(err,html){
             if (err) throw err;
-            console.log(html);
             buildDB(html);
             //data.push();
             if (0===--c) {
@@ -33,7 +32,6 @@ function buildDB(data){
     
 console.log(JSON.stringify(data))
         data.forEach(function(element, index, array){
-            console.log(index);
             processPdf(element);
         });
         
@@ -46,6 +44,9 @@ console.log(JSON.stringify(data))
                 chunks = getNumber(chunks);
                 chunks = getVersion(chunks);
                 chunks = getTitle(chunks);
+                
+                console.log(hymnObj.title);
+                
                 chunks = getBeats(chunks);
                 chunks = getSubTitle(chunks);
                 chunks = resetFirstLetter(chunks);
@@ -87,7 +88,6 @@ console.log(JSON.stringify(data))
                 else{
 
                 }
-                
                 return array;
             }
 
