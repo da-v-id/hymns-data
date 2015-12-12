@@ -6,6 +6,11 @@ var fs=require('fs');
 var dir='./files/pdfs/';
 var data=[];
 
+MongoClient.connect('mongodb://127.0.0.1:27017/hymns', function(err, db) {
+        if(err) throw err;
+console.log('going');
+        var collection = db.collection('hymns');
+
 fs.readdir(dir,function(err,files){
     if (err) throw err;
     var c=0;
@@ -25,10 +30,7 @@ fs.readdir(dir,function(err,files){
 });
 
 function buildDB(data){
-    MongoClient.connect('mongodb://127.0.0.1:27017/hymns', function(err, db) {
-        if(err) throw err;
-console.log('going');
-        var collection = db.collection('hymns');
+    
 console.log(JSON.stringify(data))
         data.forEach(function(element, index, array){
             console.log(index);
@@ -150,5 +152,7 @@ console.log(JSON.stringify(data))
 
         //db.close();
 
-    });
 }
+
+
+});
