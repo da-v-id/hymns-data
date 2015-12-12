@@ -18,6 +18,7 @@ fs.readdir(dir,function(err,files){
         c++;
         fs.readFile(dir+file,function(err,html){
             if (err) throw err;
+            console.log(JSON.stringify(html));
             buildDB(html);
             //data.push();
             if (0===--c) {
