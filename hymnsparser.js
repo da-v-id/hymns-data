@@ -25,9 +25,9 @@ fs.readdir(dir,function(err,files){
 function buildDB(){
     MongoClient.connect('mongodb://127.0.0.1:27017/hymns', function(err, db) {
         if(err) throw err;
-
+console.log('going');
         var collection = db.collection('hymns');
-
+console.log(JSON.stringify(data))
         data.forEach(function(element, index, array){
             console.log(index);
             processPdf(element);
