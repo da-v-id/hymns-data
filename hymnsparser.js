@@ -30,7 +30,8 @@ fs.readdir(dir,function(err,files){
 
 function buildDB(data){
     
-console.log(JSON.stringify(data))
+console.log(JSON.stringify(data));
+console.log('-----------');
         data.forEach(function(element, index, array){
             processPdf(element);
         });
