@@ -14,10 +14,11 @@ fs.readdir(dir,function(err,files){
         fs.readFile(dir+file,function(err,html){
             if (err) throw err;
             console.log(html);
-            data.push(html);
+            buildDB(html);
+            //data.push();
             if (0===--c) {
                 console.log('done read');
-                buildDB(data);
+                
             }
         });
     });
