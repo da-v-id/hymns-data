@@ -13,7 +13,7 @@ fs.readdir(dir,function(err,files){
         c++;
         fs.readFile(dir+file,'utf-8',function(err,html){
             if (err) throw err;
-            data[file]=html;
+            data.push(html);
             if (0===--c) {
                 console.log('done read');
                 buildDB(data);
