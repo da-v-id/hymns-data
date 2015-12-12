@@ -11,8 +11,9 @@ fs.readdir(dir,function(err,files){
     var c=0;
     files.forEach(function(file){
         c++;
-        fs.readFile(dir+file,'utf-8',function(err,html){
+        fs.readFile(dir+file,function(err,html){
             if (err) throw err;
+            console.log(html);
             data.push(html);
             if (0===--c) {
                 console.log('done read');
