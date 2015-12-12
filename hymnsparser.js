@@ -15,7 +15,7 @@ fs.readdir(dir,function(err,files){
             if (err) throw err;
             data[file]=html;
             if (0===--c) {
-                consoloe.log('done read');
+                console.log('done read');
                 buildDB();
             }
         });
@@ -29,7 +29,7 @@ function buildDB(){
         var collection = db.collection('hymns');
 
         data.forEach(function(element, index, array){
-            consoloe.log(index);
+            console.log(index);
             processPdf(element);
         });
         
