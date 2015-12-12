@@ -4,7 +4,7 @@ var path = require('path');
 var fs=require('fs');
 
 var dir='./files/pdfs/';
-var data={};
+var data=[];
 
 fs.readdir(dir,function(err,files){
     if (err) throw err;
