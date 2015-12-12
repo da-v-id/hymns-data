@@ -1,8 +1,25 @@
 var pdfText = require('pdf-text');
 var MongoClient = require('mongodb').MongoClient;
 var path = require('path');
+var fs=require('fs');
 
-var urlsArray = [];
+var dir='./tmpl/';
+var data={};
+
+fs.readdir(dir,function(err,files){
+    if (err) throw err;
+    var c=0;
+    files.forEach(function(file){
+        c++;
+        fs.readFile(dir+file,'utf-8',function(err,html){
+            if (err) throw err;
+            data[file]=html;
+            if (0===--c) {
+                buildDB();
+            }
+        });
+    });
+});
 
 function buildDB(){
     MongoClient.connect('mongodb://127.0.0.1:27017/hymns', function(err, db) {
@@ -10,7 +27,7 @@ function buildDB(){
 
         var collection = db.collection('hymns');
 
-        urlsArray.forEach(function(element, index, array){
+        data.forEach(function(element, index, array){
             processPdf(element);
         });
         
