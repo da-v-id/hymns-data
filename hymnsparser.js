@@ -3,7 +3,7 @@ var MongoClient = require('mongodb').MongoClient;
 var path = require('path');
 var fs=require('fs');
 
-var dir='/files/pdfs';
+var dir='./files/pdfs';
 var data={};
 
 fs.readdir(dir,function(err,files){
