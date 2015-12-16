@@ -9,45 +9,50 @@ var data=[];
 MongoClient.connect('mongodb://127.0.0.1:27017/hymns', function(err, db) {
         if(err) throw err;
 console.log('going');
-        var collection = db.collection('hymns');
+var collection = db.collection('hymns');
 
-fs.readdir(dir,function(err,files){
-    if (err) throw err;
-    var c=0;
-    files.forEach(function(file){
-        c++;
-        fs.readFile(dir+file,function(err,html){
+var dropHymns = function(db, callback) {
+   db.collection('hymns').drop( function(err, response) {
+      console.log(response);
+      callback();
+   });
+};
+        
+        dropHymns(db,function(){
+                    fs.readdir(dir,function(err,files){
             if (err) throw err;
-            console.log(JSON.stringify(html));
-            buildDB(html);
-            //data.push();
-            if (0===--c) {
-                console.log('done read');
+            var c=0;
+            files.forEach(function(file){
+                data.push(dir+file); 
                 
-            }
+            });
+
+            buildDB(data);
+            
         });
     });
-});
+
+
 
 function buildDB(data){
     
-console.log(JSON.stringify(data));
-console.log('-----------');
+//console.log(JSON.stringify(data));
+//console.log(data);
+
         data.forEach(function(element, index, array){
             processPdf(element);
         });
         
         function processPdf(uri){
-
             var hymnObj = {};
-            var pathToPdf = __dirname + "/"+path.basename(uri);
+            
 
-            pdfText(pathToPdf, function(err, chunks) {
+            pdfText(uri, function(err, chunks) {
                 chunks = getNumber(chunks);
                 chunks = getVersion(chunks);
                 chunks = getTitle(chunks);
                 
-                console.log(hymnObj.title);
+                //console.log(hymnObj.title);
                 
                 chunks = getBeats(chunks);
                 chunks = getSubTitle(chunks);
@@ -61,7 +66,7 @@ console.log('-----------');
                     if (err) {
                         console.log(err);
                     } else {
-                        console.log('Inserted '+hymnObj.number);
+                        //console.log('Inserted '+hymnObj.number);
                     }
                   //Close connection
                 });
