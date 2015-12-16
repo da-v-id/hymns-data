@@ -49,13 +49,18 @@ function buildDB(data){
 
             pdfText(uri, function(err, chunks) {
                 chunks = getNumber(chunks);
+
                 chunks = getVersion(chunks);
+                if(hymnObj.number == 1){
+                    console.log(chunks);
+                }
                 chunks = getTitle(chunks);
                 
                 //console.log(hymnObj.title);
                 
                 chunks = getBeats(chunks);
                 chunks = getSubTitle(chunks);
+
                 chunks = resetFirstLetter(chunks);
                 chunks = getCopyright(chunks);
                 chunks = getAuthor(chunks);
@@ -89,7 +94,7 @@ function buildDB(data){
             }
 
             function getTitle(array){
-                if(!(array[0].match(/\d/g))&&(array[0].length)>5){
+                if((array[0].length)>5){
                     hymnObj.title = array.splice(0,1)[0];
                 }
                 else{
@@ -121,7 +126,7 @@ function buildDB(data){
 
             function getCopyright(array){
                 if(array[array.length-1].indexOf('©')!==(-1)){
-                    hymnObj.copyright = array.splice(array.length-1,1)[0].replace('©').trim();
+                    hymnObj.copyright = array.splice(array.length-1,1)[0].replace('©','').trim();
                 }   
                 else{
                     hymnObj.copyright = "";
