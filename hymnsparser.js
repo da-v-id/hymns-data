@@ -42,18 +42,22 @@ function buildDB(data){
         data.forEach(function(element, index, array){
             processPdf(element);
         });
-        
+        var show = true;
         function processPdf(uri){
             var hymnObj = {};
             
 
             pdfText(uri, function(err, chunks) {
+                if(show){
+                    console.log(chunks);
+                }
                 chunks = getNumber(chunks);
 
                 chunks = getVersion(chunks);
-                if(hymnObj.number == 1){
-                    console.log(chunks);
+                if(hymnObj.number == 254){
+                    show =true;
                 }
+                console.log(hymnObj.number);
                 chunks = getTitle(chunks);
                 
                 //console.log(hymnObj.title);
